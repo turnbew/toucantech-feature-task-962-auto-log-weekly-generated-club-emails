@@ -12,30 +12,26 @@ CHANGES
 	
 		JUST FOR TEST TEMPORARLY
 		
-		C:\toucantech.dev\network-site\addons\default\modules\network_settings\controllers\email_templates.php
+			\network-site\addons\default\modules\network_settings\controllers\email_templates.php
 		
 			//Inside function index
-			
-				require_once __DIR__ . '/../../clubs/events.php';					
-				$events_obj = new Events_clubs();					
-				$events_obj->send_newsletter();
-				echo "Logging Weekly newsletters test is done. Don't forget, "; 
-				echo "you need to change commit, news ...etc, because changes activate sending newsletter.";
-		
-		\network-site\addons\default\modules\network_settings\controllers\email_center.php
-			
-			PUT the next code inside function index (but this code can be put anywhere almost - just check the path to the events.php file)
-			
-				\network-site\addons\default\modules\network_settings\controllers\email_center.php
 				
-						require_once __DIR__ . '/../../clubs/events.php';					
-						$events_obj = new Events_clubs();					
-						$events_obj->send_newsletter();
-						
+					require_once __DIR__ . '/../../clubs/events.php';					
+					$events_obj = new Events_clubs();					
+					$events_obj->send_newsletter();
+					echo "Logging Weekly newsletters test is done. Don't forget, "; 
+					echo "you need to change commit, news ...etc, because changes activate sending newsletter.";
+					echo "<br>";
+					echo "<STRONG>IMPORTANT!!!!</STRONG> BEFORE MERGE, WE NEED TO TAKE OUT SOME RESTRICTION!";
 					
+						
+	IN FILES:		
+	
 		\network-site\system\cms\libraries\Events.php
 			
-			CHANGE the code inside function trigger
+			CHANGED CODE: 
+				
+				//inside function trigger
 			
 				FROM: 
 				
@@ -59,11 +55,53 @@ CHANGES
 		
 			ADDED CODE: inside function send_newsletter
 			
-				//$this->ci->load->helper('our_timezone_helper');
-				$this->ci->load->model('templates/email_templates_m');
+				COMMENTED OUT: 
 				
-				......
+				/*
+					This is needed when timezone branch will be merged 
+					
+					$this->ci->load->helper('our_timezone_helper');
+				*/
+
+				ADDED CODES: 
 				
+				/*
+					Just for the test I'll set the values empty
+					BUT not a problem if you leave this declaration in the code to avoid php errors
+				*/
+				
+					$club_news_title = "";
+					$club_news_body = "";
+					$news_author = "";
+					$club_members = "";
+					$club_admins = "";
+					$club_articles = "";
+					$club_announcements["message1"] = "";
+					$club_announcements["message2"] = "";
+					$club_announcements["posted_by1"] = "";
+					$club_announcements["posted_by2"] = "";
+					$new_members["display_name1"] = "";
+					$new_members["details1"] = "";
+					$new_members["display_name2"] = "";
+					$new_members["details2"] = "";
+					$new_members["display_name3"] = "";
+					$new_members["details3"] = "";
+					$club_image = "";
+					$news_image = "";
+					$new_members["image1"] = "";
+					$new_members["image2"] = "";
+					$new_members["image3"] = "";
+					$club_announcements["image1"] = "";
+					$club_announcements["image2"] = "";
+					$hide_announcements = "";
+					$news_style = "";			
+				
+				/* 
+					previous part (set empty variables) can be deletable, but not necessary to delete
+				*/
+				
+				
+				ADDED CODE 2
 				
 				//Log weekly newsletters by clubs in 3 steps
 				//1. step: save the weekly newsletter to the newsletters_newsletters table
@@ -87,7 +125,11 @@ CHANGES
 					'track_opens' => 1,
 					'track_clicks' => 1,
 					'send_on' => $datetime,	
-					'send_on_timezone' => default_timezone,
+					/*
+						This is needed when timezone branch will be merged
+						
+						'send_on_timezone' => default_timezone,
+					*/
 					'confirmation_email' => Settings::get('contact_email')
 				);
 				$this->ci->db->insert('newsletters_newsletters', $newsletter_data);
