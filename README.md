@@ -1,4 +1,6 @@
-TASK'S DATE: 17.11.2017 - FINISHED: 21.11.2017 (MEDIUM)  
+TASK'S DATE: 17.11.2017 - FINISHED: 21.11.2017
+
+TASK'S LEVEL: MEDIUM - light
 
 TASK SHORT DESCRIPTION: 962 (Auto log the weekly auto generated clubs notification emails in the activity tracker with some statistics on their results (e.g. opens/ clicks/ bounces/ fails etc.) and and tag all recipients.)
 
